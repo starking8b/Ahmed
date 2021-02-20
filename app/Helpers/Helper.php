@@ -1,11 +1,11 @@
-<?php // Code within app\Helpers\Helper.php
+<?php
 
 namespace App\Helpers;
 
 use Config;
 use Illuminate\Support\Str;
 
-class helpers
+class Helper
 {
     public static function applClasses()
     {
