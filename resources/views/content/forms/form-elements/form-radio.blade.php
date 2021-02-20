@@ -110,7 +110,7 @@
 </section>
 <!-- Custom Radio Buttons end -->
 
-<!-- Vuexy Radio Buttons Color start -->
+<!-- ISP CRM Radio Buttons Color start -->
 <section class="vuexy-radio-color">
   <div class="row">
     <div class="col-12">
@@ -184,5 +184,5 @@
     </div>
   </div>
 </section>
-<!-- Vuexy Radio Buttons Color end -->
+<!-- ISP CRM Radio Buttons Color end -->
 @endsection

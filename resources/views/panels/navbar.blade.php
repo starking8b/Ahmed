@@ -28,7 +28,7 @@
             </g>
           </g>
         </svg></span>
-        <h2 class="brand-text mb-0">Vuexy</h2>
+        <h2 class="brand-text mb-0">ISP CRM</h2>
         </a>
       </li>
     </ul>
@@ -87,7 +87,7 @@
           <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>
             <div class="search-input">
               <div class="search-input-icon"><i data-feather="search"></i></div>
-              <input class="form-control input" type="text" placeholder="Explore Vuexy..." tabindex="-1" data-search="search">
+              <input class="form-control input" type="text" placeholder="ExploreISP CRM..." tabindex="-1" data-search="search">
               <div class="search-input-close"><i data-feather="x"></i></div>
               <ul class="search-list search-list-main"></ul>
             </div>
@@ -285,9 +285,15 @@
             <a class="dropdown-item" href="{{url('page/faq')}}">
               <i class="mr-50" data-feather="help-circle"></i> FAQ
             </a>
-            <a class="dropdown-item" href="{{url('auth/login-v2')}}">
+            <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="mr-50" data-feather="power"></i> Logout
             </a>
+            <form id="logout-form"
+                    action="{{ route('logout') }}"
+                    method="POST"
+                    class="d-none">
+                @csrf
+              </form>
           </div>
         </li>
       </ul>
