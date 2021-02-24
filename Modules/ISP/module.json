@@ -1,0 +1,13 @@
+{
+    "name": "ISP",
+    "alias": "isp",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ISP\\Providers\\ISPServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,4 +1,6 @@
 {
     "User": true,
-    "Role": true
+    "Role": true,
+    "ISP": true,
+    "Location": true
 }
