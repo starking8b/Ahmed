@@ -1,4 +1,4 @@
-ISPCRM Installation
+ISP CRM Installation
 
 System Requirements
 PHP: 7.3v or Above
@@ -9,8 +9,12 @@ Laravel: 8.0v or Above
 
 Laravel/UI: 3.0v or Above
 
+ISP CRM Dev Account:  
 
-Given below are the steps you need to follow, to install ISPCRM on your system: 
+`User: super@admin.com`  
+`Pass: password` 
+
+Given below are the steps you need to follow, to install ISP CRM on your system: 
 
 Step 1: Open the terminal in your root directory to install the composer packages run the following command: 
 
