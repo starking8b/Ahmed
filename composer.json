@@ -84,6 +84,6 @@
     "reset": [
       "composer c-a",
       "composer ch-a"
-    ],
+    ]
   }
 }
