@@ -16,7 +16,10 @@ class Subscriber extends Model
     }*/
 
 
-
+    public function owners()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'owner');
+    }
     
     public function radAcctData() {
         return $this->hasOne('App\Model\RadAcct', 'username', 'username');
