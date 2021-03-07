@@ -86,8 +86,8 @@
       "@php artisan optimize"
     ],
     "reset": [
-      "composer c-a",
-      "composer ch-a"
+      "composer clear-all",
+      "composer cache-all"
     ]
   }
 }
