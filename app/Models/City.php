@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class City extends Model
 
     public function states()
     {
-        return $this->hasOne('App\Model\State', 'id', 'state_id');
+        return $this->hasOne('App\Models\State', 'id', 'state_id');
     }
 }

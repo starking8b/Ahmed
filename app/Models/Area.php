@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ class Area extends Model
 
     public function thanas()
     {
-        return $this->hasOne('App\Model\Thana', 'id', 'thana_id');
+        return $this->hasOne('App\Models\Thana', 'id', 'thana_id');
     }
 
     public $timestamps = false;

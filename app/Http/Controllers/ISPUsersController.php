@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\RadUserGroup;
+use App\Models\RadUserGroup;
 use Illuminate\Http\Request;
-use App\Model\Radcheck;
-use APP\Model\Radacct;
-use APP\Model\RadReply;
-use App\Model\Subscriber;
-use App\Model\Profile;
+use App\Models\Radcheck;
+use App\Models\Radacct;
+use App\Models\RadReply;
+use App\Models\Subscriber;
+use App\Models\Profile;
 
 use Illuminate\Support\Str;
 use Session;

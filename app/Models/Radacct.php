@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,11 +12,11 @@ class Radacct extends Model
 
     public function radauth()
     {
-        return $this->belongsTo('App\Model\RadPostAuth', 'username', 'username');
+        return $this->belongsTo('App\Models\RadPostAuth', 'username', 'username');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Model\Subscriber', 'username', 'username')->where('status', '!=', 3);
+        return $this->belongsTo('App\Models\Subscriber', 'username', 'username')->where('status', '!=', 3);
     }
 }

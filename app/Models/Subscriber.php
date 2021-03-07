@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,7 @@ class Subscriber extends Model
 
     /*public function profile()
     {
-        return $this->belongsTo('App\Model\Profile', 'owner');
+        return $this->belongsTo('App\Models\Profile', 'owner');
     }*/
 
 
@@ -22,15 +22,15 @@ class Subscriber extends Model
     }
     
     public function radAcctData() {
-        return $this->hasOne('App\Model\RadAcct', 'username', 'username');
+        return $this->hasOne('App\Models\RadAcct', 'username', 'username');
     }
     
     public function usermac() {
-        return $this->hasOne('App\Model\UserMAC', 'username', 'username');
+        return $this->hasOne('App\Models\UserMAC', 'username', 'username');
     }
 
     public function onlineuser() {
-        return $this->belongsTo('App\Model\RadAcct', 'username', 'username')->whereNull('acctstoptime');
+        return $this->belongsTo('App\Models\RadAcct', 'username', 'username')->whereNull('acctstoptime');
     }
 
 
