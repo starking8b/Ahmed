@@ -12,6 +12,7 @@
 */
 Route::prefix('crm')->group(function () {
         // users routes
+        Route::get('users/index_data', 'UserController@index_data')->name('users.index_data');
         Route::resource('users', UserController::class);
 });
 

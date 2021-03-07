@@ -2,9 +2,10 @@
 
 namespace Modules\User\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\User\DataTables\UsersDataTable;
+use Illuminate\Contracts\Support\Renderable;
 
 class UserController extends Controller
 {
@@ -15,6 +16,17 @@ class UserController extends Controller
     public function index()
     {
         return view('user::index');
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_data(UsersDataTable $dataTable)
+    {
+        return $dataTable->render('users');
     }
 
     /**
