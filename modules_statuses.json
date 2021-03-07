@@ -1,6 +1,5 @@
 {
     "User": true,
     "Role": true,
-    "ISP": true,
-    "Location": true
+    "ISP": true
 }
