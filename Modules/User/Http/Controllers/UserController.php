@@ -11,22 +11,12 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
-        return view('user::index');
-    }
-
-
-    /**
-     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_data(UsersDataTable $dataTable)
+    public function index(UsersDataTable $dataTable)
     {
-        return $dataTable->render('users');
+        return $dataTable->render('user::index',['name'=>'namexxx']);
     }
 
     /**
