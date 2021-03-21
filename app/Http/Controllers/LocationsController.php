@@ -14,7 +14,7 @@ use App\Models\Profile;
 use Illuminate\Support\Str;
 use Session;
 use Auth;
-class ISPUsersController extends Controller
+class LocationsController extends Controller
 {
   // invoice list App
   public function index()

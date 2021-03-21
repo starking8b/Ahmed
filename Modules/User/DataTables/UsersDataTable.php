@@ -14,13 +14,13 @@ class UsersDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $data Results from data() method.
+     * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($data)
+    public function dataTable($query)
     {
         return datatables()
-            ->eloquent($data)
+            ->eloquent($query)
             ->addColumn('action', 'user::actionColumn');
     }
 
@@ -43,13 +43,11 @@ class UsersDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('user-list-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create'),
                         Button::make('export'),
                         Button::make('print'),
                         Button::make('reset'),
