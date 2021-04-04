@@ -72,29 +72,29 @@
                                    placeholder="John Doe"
                                    name="name"
                                    aria-label="John Doe"
-                                   aria-describedby="basic-icon-default-fullname2" />
+                                   aria-describedby="" />
                         </div>
                         <div class="form-group">
                             <label class="form-label"
-                                   for="basic-icon-default-fullname">Email</label>
+                                   for="basic-icon-default-Email">Email</label>
                             <input type="text"
                                    class="form-control dt-full-name"
-                                   id="basic-icon-default-fullname"
+                                   id="basic-icon-default-Email"
                                    placeholder="John Doe"
                                    name="email"
                                    aria-label="John Doe"
-                                   aria-describedby="basic-icon-default-fullname2" />
+                                   aria-describedby="" />
                         </div>
                         <div class="form-group">
                             <label class="form-label"
-                                   for="basic-icon-default-fullname">Password</label>
+                                   for="basic-icon-default-Password">Password</label>
                             <input type="password"
-                                   class="form-control dt-full-name"
-                                   id="basic-icon-default-fullname"
+                                   class="form-control dt-full-Password"
+                                   id="basic-icon-default-Password"
                                    placeholder="Şifreniz"
                                    name="password"
                                    aria-label="John Doe"
-                                   aria-describedby="basic-icon-default-fullname2" />
+                                   aria-describedby="" />
                         </div>
                         <button type="submit"
                                 class="btn btn-primary mr-1 data-submit">Submit</button>
