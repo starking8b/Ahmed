@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/ui/prism.min.css')) }}" />
+
 {{-- Vendor Styles --}}
 @yield('vendor-style')
 {{-- Theme Styles --}}
@@ -31,3 +32,5 @@
 
 {{-- user custom styles --}}
 <link rel="stylesheet" href="{{ asset(mix('css/style.css')) }}" />
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
+<link rel="stylesheet"  href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">

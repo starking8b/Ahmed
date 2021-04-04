@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Create User')
+@section('title', 'User Create')
 
 @section('vendor-style')
 <!-- vendor css files -->
@@ -29,8 +29,8 @@
                         class="step-trigger">
                     <span class="bs-stepper-box">1</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">User Details</span>
-                        <span class="bs-stepper-subtitle">Setup User Details</span>
+                        <span class="bs-stepper-title">Account Details</span>
+                        <span class="bs-stepper-subtitle">Setup Account Details</span>
                     </span>
                 </button>
             </div>
@@ -105,8 +105,8 @@
                                    name="email"
                                    id="email"
                                    class="form-control"
-                                   placeholder="name.last_name@example.com"
-                                   aria-label="name.last_name" />
+                                   placeholder="john.doe@email.com"
+                                   aria-label="john.doe" />
                         </div>
                     </div>
                     <div class="row">

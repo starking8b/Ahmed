@@ -1,13 +1,15 @@
 @extends('layouts/contentLayoutMaster')
-
-@section('title', 'Form Wizard')
-
+@section('title')
+{{$isp->name}}
+@endsection
 @section('vendor-style')
 <!-- vendor css files -->
 <link rel="stylesheet"
       href="{{ asset(mix('vendors/css/forms/wizard/bs-stepper.min.css')) }}">
 <link rel="stylesheet"
       href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+<link rel="stylesheet"
+      href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
 @endsection
 
 @section('page-style')
@@ -16,6 +18,8 @@
       href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
 <link rel="stylesheet"
       href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
+<link rel="stylesheet"
+      href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
 
 @section('content')
@@ -24,13 +28,13 @@
     <div class="bs-stepper horizontal-wizard-example">
         <div class="bs-stepper-header">
             <div class="step"
-                 data-target="#account-details">
+                 data-target="#isp-details">
                 <button type="button"
                         class="step-trigger">
                     <span class="bs-stepper-box">1</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Account Details</span>
-                        <span class="bs-stepper-subtitle">Setup Account Details</span>
+                        <span class="bs-stepper-title">isp Details</span>
+                        <span class="bs-stepper-subtitle">Setup isp Details</span>
                     </span>
                 </button>
             </div>
@@ -38,29 +42,15 @@
                 <i data-feather="chevron-right"
                    class="font-medium-2"></i>
             </div>
-            <div class="step"
-                 data-target="#personal-info">
-                <button type="button"
-                        class="step-trigger">
-                    <span class="bs-stepper-box">2</span>
-                    <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Personal Info</span>
-                        <span class="bs-stepper-subtitle">Add Personal Info</span>
-                    </span>
-                </button>
-            </div>
-            <div class="line">
-                <i data-feather="chevron-right"
-                   class="font-medium-2"></i>
-            </div>
+
             <div class="step"
                  data-target="#address-step">
                 <button type="button"
                         class="step-trigger">
-                    <span class="bs-stepper-box">3</span>
+                    <span class="bs-stepper-box">2</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Address</span>
-                        <span class="bs-stepper-subtitle">Add Address</span>
+                        <span class="bs-stepper-title">Contact</span>
+                        <span class="bs-stepper-subtitle">Add Contact info</span>
                     </span>
                 </button>
             </div>
@@ -72,7 +62,7 @@
                  data-target="#social-links">
                 <button type="button"
                         class="step-trigger">
-                    <span class="bs-stepper-box">4</span>
+                    <span class="bs-stepper-box">3</span>
                     <span class="bs-stepper-label">
                         <span class="bs-stepper-title">Social Links</span>
                         <span class="bs-stepper-subtitle">Add Social Links</span>
@@ -80,163 +70,101 @@
                 </button>
             </div>
         </div>
-        <div class="bs-stepper-content">
-            <div id="account-details"
-                 class="content">
-                <div class="content-header">
-                    <h5 class="mb-0">Account Details</h5>
-                    <small class="text-muted">Enter Your Account Details.</small>
-                </div>
-                <form>
+        <form action="{{route('isp.update',$isp->id)}}"
+              method="post"
+              enctype="multipart/form-data">
+            @method('patch')
+            @csrf
+            <div class="bs-stepper-content">
+
+                <div id="isp-details"
+                     class="content">
+
+                    <input type="hidden"
+                           name="isp_id"
+                           id="isp_id"
+                           value="{{$isp->id}}" />
+                    <input type="hidden"
+                           name="_token"
+                           value="{{ csrf_token() }}" />
+
                     <div class="row">
+                        <div class="form-group form-logo-toggle col-md-6">
+                            <label class="form-label"
+                                   for="logo">logo</label>
+                            <input type="file"
+                                   name="logo"
+                                   value="{{asset($isp->logo)}}"
+                                   id="logo"
+                                   class="form-control" />
+                        </div>
                         <div class="form-group col-md-6">
                             <label class="form-label"
-                                   for="username">Username</label>
+                                   for="name">name</label>
                             <input type="text"
-                                   name="username"
-                                   id="username"
+                                   name="name"
+                                   value="{{$isp->name}}"
+                                   id="name"
                                    class="form-control"
-                                   placeholder="johndoe" />
+                                   placeholder="name" />
                         </div>
-                        <div class="form-group col-md-6">
-                            <label class="form-label"
-                                   for="email">Email</label>
-                            <input type="email"
-                                   name="email"
-                                   id="email"
-                                   class="form-control"
-                                   placeholder="john.doe@email.com"
-                                   aria-label="john.doe" />
-                        </div>
+
                     </div>
-                    <div class="row">
-                        <div class="form-group form-password-toggle col-md-6">
-                            <label class="form-label"
-                                   for="password">Password</label>
-                            <input type="password"
-                                   name="password"
-                                   id="password"
-                                   class="form-control"
-                                   placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                        </div>
-                        <div class="form-group form-password-toggle col-md-6">
-                            <label class="form-label"
-                                   for="confirm-password">Confirm Password</label>
-                            <input type="password"
-                                   name="confirm-password"
-                                   id="confirm-password"
-                                   class="form-control"
-                                   placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                        </div>
-                    </div>
-                </form>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-outline-secondary btn-prev"
-                            disabled>
-                        <i data-feather="arrow-left"
-                           class="align-middle mr-sm-25 mr-0"></i>
-                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                    </button>
-                    <button class="btn btn-primary btn-next">
-                        <span class="align-middle d-sm-inline-block d-none">Next</span>
-                        <i data-feather="arrow-right"
-                           class="align-middle ml-sm-25 ml-0"></i>
-                    </button>
-                </div>
-            </div>
-            <div id="personal-info"
-                 class="content">
-                <div class="content-header">
-                    <h5 class="mb-0">Personal Info</h5>
-                    <small>Enter Your Personal Info.</small>
-                </div>
-                <form>
+
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="form-label"
-                                   for="first-name">First Name</label>
-                            <input type="text"
-                                   name="first-name"
-                                   id="first-name"
-                                   class="form-control"
-                                   placeholder="John" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="form-label"
-                                   for="last-name">Last Name</label>
-                            <input type="text"
-                                   name="last-name"
-                                   id="last-name"
-                                   class="form-control"
-                                   placeholder="Doe" />
+                                   for="about">about isp</label>
+
+                            <div class="form-label-group mb-0">
+                                <textarea data-length="20"
+                                          class="form-control char-textarea"
+                                          id="textarea-counter"
+                                          rows="3"
+                                          name="about">{!!$isp->about!!}</textarea>
+
+                            </div>
+                            <small class="textarea-counter-value float-right"><span class="char-count">0</span> / 20
+                            </small>
+
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="form-label"
-                                   for="country">Country</label>
-                            <select class="select2 w-100"
-                                    name="country"
-                                    id="country">
-                                <option label=" "></option>
-                                <option>UK</option>
-                                <option>USA</option>
-                                <option>Spain</option>
-                                <option>France</option>
-                                <option>Italy</option>
-                                <option>Australia</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="form-label"
-                                   for="language">Language</label>
-                            <select class="select2 w-100"
-                                    name="language"
-                                    id="language"
-                                    multiple>
-                                <option>English</option>
-                                <option>French</option>
-                                <option>Spanish</option>
-                            </select>
-                        </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary btn-prev"
+                           disabled>
+                            <i data-feather="arrow-left"
+                               class="align-middle mr-sm-25 mr-0"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                        </a>
+                        <a class="btn btn-primary btn-next">
+                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                            <i data-feather="arrow-right"
+                               class="align-middle ml-sm-25 ml-0"></i>
+                        </a>
                     </div>
-                </form>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary btn-prev">
-                        <i data-feather="arrow-left"
-                           class="align-middle mr-sm-25 mr-0"></i>
-                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                    </button>
-                    <button class="btn btn-primary btn-next">
-                        <span class="align-middle d-sm-inline-block d-none">Next</span>
-                        <i data-feather="arrow-right"
-                           class="align-middle ml-sm-25 ml-0"></i>
-                    </button>
                 </div>
-            </div>
-            <div id="address-step"
-                 class="content">
-                <div class="content-header">
-                    <h5 class="mb-0">Address</h5>
-                    <small>Enter Your Address.</small>
-                </div>
-                <form>
+
+                <div id="address-step"
+                     class="content">
+
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="form-label"
                                    for="address">Address</label>
                             <input type="text"
+                                   value="{{$isp->address}}"
                                    id="address"
                                    name="address"
-                                   class="form-control"
-                                   placeholder="98  Borough bridge Road, Birmingham" />
+                                   class="form-control" />
                         </div>
                         <div class="form-group col-md-6">
                             <label class="form-label"
-                                   for="landmark">Landmark</label>
-                            <input type="text"
-                                   name="landmark"
-                                   id="landmark"
+                                   for="landmark">phone</label>
+                            <input value="{{$isp->phone}}"
+                                   type="text"
+                                   name="phone"
+                                   id="phone"
                                    class="form-control"
                                    placeholder="Borough bridge" />
                         </div>
@@ -244,49 +172,73 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="form-label"
-                                   for="pincode1">Pincode</label>
+                                   for="mobile">mobile</label>
                             <input type="text"
-                                   id="pincode1"
+                                   name="mobile"
+                                   value="{{$isp->mobile}}"
+                                   id="mobile"
                                    class="form-control"
                                    placeholder="658921" />
                         </div>
                         <div class="form-group col-md-6">
                             <label class="form-label"
-                                   for="city1">City</label>
+                                   for="email">email</label>
                             <input type="text"
-                                   id="city1"
+                                   name="email"
+                                   id="email"
+                                   value="{{$isp->email}}"
                                    class="form-control"
-                                   placeholder="Birmingham" />
+                                   placeholder="email" />
                         </div>
                     </div>
-                </form>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary btn-prev">
-                        <i data-feather="arrow-left"
-                           class="align-middle mr-sm-25 mr-0"></i>
-                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                    </button>
-                    <button class="btn btn-primary btn-next">
-                        <span class="align-middle d-sm-inline-block d-none">Next</span>
-                        <i data-feather="arrow-right"
-                           class="align-middle ml-sm-25 ml-0"></i>
-                    </button>
-                </div>
-            </div>
-            <div id="social-links"
-                 class="content">
-                <div class="content-header">
-                    <h5 class="mb-0">Social Links</h5>
-                    <small>Enter Your Social Links.</small>
-                </div>
-                <form>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="form-label"
-                                   for="twitter">Twitter</label>
+                                   for="map_location">map_location</label>
                             <input type="text"
-                                   id="twitter"
-                                   name="twitter"
+                                   name="map_location"
+                                   value="{{$isp->map_location}}"
+                                   id="map_location"
+                                   class="form-control"
+                                   placeholder="658921" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="form-label"
+                                   for="fax">fax</label>
+                            <input type="text"
+                                   id="fax"
+                                   name="fax"
+                                   value="{{$isp->fax}}"
+                                   class="form-control"
+                                   placeholder="fax" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-primary btn-prev">
+                            <i data-feather="arrow-left"
+                               class="align-middle mr-sm-25 mr-0"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                        </a>
+                        <a class="btn btn-primary btn-next">
+                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                            <i data-feather="arrow-right"
+                               class="align-middle ml-sm-25 ml-0"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="social-links"
+                     class="content">
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="form-label"
+                                   for="twitter">Instagram</label>
+                            <input type="text"
+                                   value="{{$isp->instagram_url}}"
+                                   id="instagram_url"
+                                   name="instagram_url"
                                    class="form-control"
                                    placeholder="https://twitter.com/abc" />
                         </div>
@@ -294,8 +246,9 @@
                             <label class="form-label"
                                    for="facebook">Facebook</label>
                             <input type="text"
-                                   id="facebook"
-                                   name="facebook"
+                                   value="{{$isp->facebook_url}}"
+                                   id="facebook_url"
+                                   name="facebook_url"
                                    class="form-control"
                                    placeholder="https://facebook.com/abc" />
                         </div>
@@ -303,39 +256,34 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="form-label"
-                                   for="google">Google+</label>
-                            <input type="text"
-                                   id="google"
-                                   name="google"
-                                   class="form-control"
-                                   placeholder="https://plus.google.com/abc" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="form-label"
                                    for="linkedin">Linkedin</label>
                             <input type="text"
-                                   id="linkedin"
-                                   name="linkedin"
+                                   value="{{$isp->linkedin_url}}"
+                                   id="linkedin_url"
+                                   name="linkedin_url"
                                    class="form-control"
                                    placeholder="https://linkedin.com/abc" />
                         </div>
                     </div>
-                </form>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary btn-prev">
-                        <i data-feather="arrow-left"
-                           class="align-middle mr-sm-25 mr-0"></i>
-                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                    </button>
-                    <button class="btn btn-success btn-submit">Submit</button>
+
+
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-primary btn-prev">
+                            <i data-feather="arrow-left"
+                               class="align-middle mr-sm-25 mr-0"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                        </a>
+                        <button class="btn btn-success btn-submit">Submit</button>
+                    </div>
                 </div>
-            </div>
-        </div>
+        </form>
+    </div>
+
     </div>
 </section>
 <!-- /Horizontal Wizard -->
-@endsection
 
+@endsection
 @section('vendor-script')
 <!-- vendor files -->
 <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
@@ -344,5 +292,6 @@
 @endsection
 @section('page-script')
 <!-- Page js files -->
-<script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+<script src="{{ asset('js/scripts/isp/isp-update.js')}}"></script>
 @endsection

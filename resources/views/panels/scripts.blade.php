@@ -11,3 +11,5 @@
 {{-- page script --}}
 @yield('page-script')
 {{-- page script --}}
+<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/extensions/ext-component-toastr.js')) }}"></script>

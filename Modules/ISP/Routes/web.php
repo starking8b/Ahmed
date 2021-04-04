@@ -12,6 +12,6 @@
 */
 
 Route::prefix('crm')->group(function () {
-    // users routes
-    Route::resource('isp', ISPController::class);
+    // isp routes
+    Route::resource('isp', 'ISPController');
 });

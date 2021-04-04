@@ -59,5 +59,6 @@
     })
 
   </script>
+  @include('flash::message')
 </body>
 </html>

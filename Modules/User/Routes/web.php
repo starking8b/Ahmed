@@ -10,8 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('crm')->group(function () {
-        // users routes
-        Route::resource('users', UserController::class);
+Route::middleware(['auth'])->prefix('crm')->group(function () {
+    Route::resource('users', UserController::class);
 });
+
+
 

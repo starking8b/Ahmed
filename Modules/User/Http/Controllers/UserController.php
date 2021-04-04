@@ -2,21 +2,37 @@
 
 namespace Modules\User\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\User\DataTables\UsersDataTable;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Renderable
      */
-    public function index(UsersDataTable $dataTable)
+    public function index(Request $request)
     {
-        return $dataTable->render('user::index',['name'=>'namexxx']);
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => route('users.index'), 'name' => "Users"]
+        ];
+        if($request->has('data')){
+            $user=User::select(['id','name','email'])->get();
+            return Datatables::of($user)
+                ->addColumn('actions', function ($data) {
+                    return view('user::actions.action-column',compact('data'));
+                })
+                ->rawColumns(['id','name','email','actions'])
+                ->toJson();
+        }
+        return view('user::backend.index', [
+            'breadcrumbs' => $breadcrumbs
+        ]);
     }
 
     /**
@@ -25,7 +41,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user::create');
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => route('users.index'), 'name' => "Users"], ['name' => "Create User"]
+        ];
+        return view('user::backend.create', [
+            'breadcrumbs' => $breadcrumbs
+        ]);
     }
 
     /**
@@ -35,7 +56,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
     }
 
     /**
@@ -45,7 +66,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('user::show');
+        return view('user::backend.show');
     }
 
     /**
@@ -55,7 +76,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user::edit');
+         $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => route('users.index'), 'name' => "Users"], ['name' => "User Edit"]
+        ];
+        $user=User::where('id',$id)->first();
+
+        return view('user::backend.edit', [
+            'breadcrumbs' => $breadcrumbs,'user'=>$user
+        ]);
     }
 
     /**
@@ -66,7 +94,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::where('id',$id)->first()->update(['name'=>$request->name,'email'=>$request->email,'password'=>Hash::make($request->password)]);
+        return redirect()->route('users.index');
     }
 
     /**
@@ -76,6 +105,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->back();
     }
 }

@@ -11,7 +11,6 @@
 |
 */
 
-Route::prefix('crm')->group(function () {
-    // roles routes
+Route::middleware(['auth'])->prefix('crm')->group(function () {
     Route::resource('roles', RoleController::class);
 });
