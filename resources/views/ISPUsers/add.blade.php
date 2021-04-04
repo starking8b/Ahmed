@@ -1,277 +1,286 @@
+
 @extends('layouts/contentLayoutMaster')
 
-
-@section('title', 'User List')
+@section('title', 'Add New User')
 
 @section('vendor-style')
-  {{-- Page Css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap4.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap4.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap4.min.css')) }}">
+  <!-- vendor css files -->
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/wizard/bs-stepper.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
-
-  <style>
-    .table_btn{border-radius: 5px;margin: 10px;}
-    .multi-menu li{color:black}
-  </style>
-
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">
 @endsection
 
 @section('page-style')
-  {{-- Page Css files --}}
+  <!-- Page css files -->
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-  <link rel="stylesheet" href="{{ asset('Plugins/jquery-multi-select/css/multi.select.css') }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
 
-  <link rel="stylesheet" href="{{ asset('css/users.css') }}">
-  <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
 @endsection
 
 @section('content')
-  <!-- users list start -->
-  <section class="app-user-list">
-    <!-- users filter start -->
-    <div class="card">
-      <h5 class="card-header">Filters</h5>
-
-<div class="row">
-
-  <div class="col-3"><div class="form-group"> <label class="form-label" for="owner">Selected Columns</label><div class="multsi" id="multi"></div></div></div>
-  <div class="col-3">
-    <div class="form-group">
-      <label class="form-label" for="owner">Owner</label>
-      <select id="owner_search" name="owner_search" class="form-control">
-        @foreach($users as $user)
-        <option value="{{$user->id}}">{{$user->name}}</option>
-        @endforeach
-      </select>
-
-
-  </div>
-</div>
-
-
-
-
-
-
-
-    </div>
-    <!-- users filter end -->
-    <!-- list section start -->
-    <div class="card">
-      <div class="card-datatable table-responsive pt-0">
-
-        <div id="context-menu">
-
-          <ul class="dropdown-menu pull-left" role="menu">
-
-            <li>
-
-              <a href="javascript:;" style="color: #000000;"  id="context-copy" class="">
-
-                <i  data-feather="clipboard" ></i><span><span  >copy</span></span>
-
-              </a>
-
-            </li>
-
-            <li>
-
-              <a href="javascript:;" style="color: #000000;" id="context-search">
-
-                <i data-feather="search"></i><span><span  >search</span></span>
-
-              </a>
-            </li>
-
-            <li>
-
-              <a href="javascript:;"  style="color: #000000;"id="context-addfilter">
-
-                <i data-feather="filter"></i><span><span data-lang="add_filter">add filter</span></span>
-
-              </a>
-
-            </li>
-
-          </ul>
-
+  <!-- Horizontal Wizard -->
+  <section class="horizontal-wizard">
+    <div class="bs-stepper horizontal-wizard-example">
+      <div class="bs-stepper-header">
+        <div class="step" data-target="#account-details">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-box">1</span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Login Details</span>
+            <span class="bs-stepper-subtitle">Setup Login Details</span>
+          </span>
+          </button>
+        </div>
+        <div class="line">
+          <i data-feather="chevron-right" class="font-medium-2"></i>
+        </div>
+        <div class="step" data-target="#personal-info">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-box">2</span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Personal Info</span>
+            <span class="bs-stepper-subtitle">Add Personal Info</span>
+          </span>
+          </button>
+        </div>
+        <div class="line">
+          <i data-feather="chevron-right" class="font-medium-2"></i>
+        </div>
+        <div class="step" data-target="#address-step">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-box">3</span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Location & Zone Details</span>
+            <span class="bs-stepper-subtitle">Add Location & Zone Details</span>
+          </span>
+          </button>
+        </div>
+        <div class="line">
+          <i data-feather="chevron-right" class="font-medium-2"></i>
+        </div>
+        <div class="step" data-target="#technical-step">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-box">4</span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Technical Details</span>
+            <span class="bs-stepper-subtitle">Insert Technical Details</span>
+          </span>
+          </button>
+        </div>
+        <div class="line">
+          <i data-feather="chevron-right" class="font-medium-2"></i>
+        </div>
+        <div class="step" data-target="#social-links">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-box">5</span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Upload Documents</span>
+            <span class="bs-stepper-subtitle">Upload Proof Documents</span>
+          </span>
+          </button>
         </div>
 
-        <div id="context-menu-light">
-
-          <ul class="dropdown-menu pull-left" role="menu">
-
-            <li>
-              <a href="javascript:;"style="color: #000000;" id="context-paste">
-
-                <i data-feather="copy"></i><span><span data-lang="paste">Past</span></span>
-
-              </a>
-
-            </li>
-
-            <li>
-
-              <a href="javascript:;" style="color: #000000;" id="context-pastesearch">
-
-                <i data-feather="search"></i><span><span data-lang="paste_and_search">Past and search</span></span>
-
-              </a>
-
-            </li>
-
-          </ul>
-
-        </div>
-        <div id="context-menu-details">
-
-          <ul class="dropdown-menu pull-left" role="menu">
-
-            <li>
-
-              <a href="javascript:;" id="add-as-column">
-
-                <i class="fa fa-plus"></i><span><span data-lang="">Add Column</span></span>
-
-              </a>
-
-            </li>
-
-          </ul>
-
-        </div>
-
-        <div class="portlet-body">
-
-          <div id="pageCounterWrap" style="float:right;">
-
-            <div class="paging-wrapper">
-
-              <div id="search">
-
-                <div style="margin-top:8px; padding-right:10px; padding-left:10px;">
-                  <ul class="pagination page1-links" id="pageCounter"></ul>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <table class=" table table-bordered  " id="ispuser-table">
-            <thead >
-
-            </thead>
-            <tbody>
-
-            </tbody>
-          </table>
-        </div>
       </div>
-
-
-
-      <!-- Modal to add new user starts-->
-      <div class="modal modal-slide-in new-user-modal fade modal-xl" id="modals-slide-in">
-        <div class="modal-dialog modal-xl" style="width: 70%">
-          <form class="add-new-user modal-content pt-0">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> ^w</button>
-            <div class="modal-header mb-1">
-              <h5 class="modal-title" id="exampleModalLabel">New User</h5>
-            </div>
-            <div class="modal-body flex-grow-1">
-              <div class="form-group">
-                <label class="form-label" for=" fullname">Full Name</label>
-                <input
-                        type="text"
-                        class="form-control  full-name"
-                        id=" fullname"
-                        placeholder="John Doe"
-                        name=" fullname"
-                        aria-label="John Doe"
-                        aria-describedby="basic-icon-default-fullname2"
-                />
-              </div>
-              <div class="form-group">
+      <div class="bs-stepper-content">
+        <div id="account-details" class="content">
+          <div class="content-header">
+            <h5 class="mb-0">Account Details</h5>
+            <small class="text-muted">Enter Your Account Details.</small>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group col-md-12">
                 <label class="form-label" for="username">Username</label>
-                <input
-                        type="text"
-                        id=" username"
-                        class="form-control  "
-                        placeholder="Web Developer"
-                        aria-label="jdoe1"
-                        aria-describedby="basic-icon-default-uname2"
-                        name="username"
-                />
+                <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
               </div>
-              <div class="form-group">
-                <label class="form-label" for="basic-icon-default-uname">Password</label>
+
+            </div>
+            <div class="row">
+              <div class="form-group form-password-toggle col-md-12">
+                <label class="form-label" for="password">Password</label>
                 <input
                         type="password"
-                        id="password"
-                        class="form-control "
-                        placeholder="Password"
-                        aria-label="password"
-                        aria-describedby="password"
                         name="password"
+                        id="password"
+                        class="form-control"
+                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                 />
               </div>
-              <div class="form-group">
-                <label class="form-label" for="basic-icon-default-uname">Confirm Password</label>
+              <div class="form-group form-password-toggle col-md-12">
+                <label class="form-label" for="confirm-password">Confirm Password</label>
                 <input
                         type="password"
-                        id="confirm-password"
                         name="confirm-password"
-                        class="form-control  "
-                        placeholder="Reenter Password"
-                        aria-label="password"
-                        aria-describedby="password"
-
+                        id="confirm-password"
+                        class="form-control"
+                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                 />
               </div>
-              <div class="form-group">
-                <label class="form-label" for=" email">Email</label>
+              <div class="form-group   col-md-12">
+                <label class="form-label" for=" plan">Select Plan</label>
+                <select id="plan" name="plan" class="form-control">
+                  <option value="1">Basic</option>
+                  <option value="2">Enterprise</option>
+                  <option value="3">Company</option>
+                  <option value="4">Team</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-outline-secondary btn-prev" disabled>
+              <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+              <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button class="btn btn-primary btn-next">
+              <span class="align-middle d-sm-inline-block d-none">Next</span>
+              <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+            </button>
+          </div>
+        </div>
+        <div id="personal-info" class="content">
+          <div class="content-header">
+            <h5 class="mb-0">Personal Info</h5>
+            <small>Enter Your Personal Info.</small>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="full-name">Full Name</label>
+                <input type="text" name="full-name" id="full-name" class="form-control" placeholder="John" />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="phone">Mobile Number</label>
+                <input type="text" name="phone" id="phone" class="form-control" placeholder="xxx-xxx-xxxx" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="email">Email</label>
                 <input
-                        type="text"
-                        id=" email"
-                        class="form-control "
-                        placeholder="john.doe@example.com"
-                        aria-label="john.doe@example.com"
-                        aria-describedby="basic-icon-default-email2"
+                        type="email"
                         name="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="john.doe@email.com"
+                        aria-label="john.doe"
                 />
-                <small class="form-text text-muted"> You can use letters, numbers & periods </small>
               </div>
-              <div class="form-group">
-                <label class="form-label" for=phone">Phone</label>
+
+              <div class="form-group col-md-6">
+                <label class="form-label" for="country">Country</label>
                 <input
                         type="text"
-                        id="phone"
-                        class="form-control phone"
-                        placeholder="0533333333"
-                        aria-label=" 0533333333"
-
-                        name="phone"
+                        name="country"
+                        id="country"
+                        class="form-control"
+                        placeholder="john.doe@email.com"
+                        aria-label="Country"
                 />
-
               </div>
-              <div class="form-group">
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="country">City</label>
+                <input
+                        type="text"
+                        name="city"
+                        id="city"
+                        class="form-control"
+                        placeholder="City"
+                        aria-label="city"
+                />
+              </div>
+              <div class="form-group col-md-6">
                 <label class="form-label" for="address">Address</label>
                 <input
                         type="text"
                         id="address"
-                        class="form-control  "
-                        placeholder="Address"
-                        aria-label=" Address"
-
                         name="address"
+                        class="form-control"
+                        placeholder="98  Borough bridge Road, Birmingham"
                 />
-
               </div>
-              <div class="form-group">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="landmark">PinCode</label>
+                <input type="text" name="pincode" id="pincode" class="form-control" placeholder="PinCode" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-12">
+
+                <div class="custom-control custom-switch custom-switch-success">
+                  <p class="mb-50">Billing Address Same ?</p>
+                  <input type="checkbox" class="custom-control-input" id="addressswitch"   />
+                  <label class="custom-control-label" for="addressswitch">
+                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+            <div class="row" id="addressdiv" style="display: none">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="country">Country</label>
+                <input
+                        type="text"
+                        name="countrybill"
+                        id="countrybill"
+                        class="form-control"
+                        placeholder="Country"
+                        aria-label="Country"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="country">City</label>
+                <input
+                        type="text"
+                        name="citybill"
+                        id="citybill"
+                        class="form-control"
+                        placeholder="City"
+                        aria-label="city"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="address">Address</label>
+                <input
+                        type="text"
+                        id="addressbill"
+                        name="addressbill"
+                        class="form-control"
+                        placeholder="98  Borough bridge Road, Birmingham"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="landmark">PinCode</label>
+                <input type="text" name="pincodebill" id="pincodebill" class="form-control" placeholder="PinCode" />
+              </div>
+
+            </div>
+          </form>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary btn-prev">
+              <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+              <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button class="btn btn-primary btn-next">
+              <span class="align-middle d-sm-inline-block d-none">Next</span>
+              <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="address-step" class="content">
+          <div class="content-header">
+            <h5 class="mb-0">Location & Zone Details </h5>
+            <small>Enter Your Location.</small>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group col-md-6">
                 <label class="form-label" for="owner">Owner</label>
                 <select id="owner" name="owner" class="form-control">
                   @foreach($users as $user)
@@ -279,57 +288,193 @@
                   @endforeach
                 </select>
               </div>
-              <div class="form-group mb-2">
-                <label class="form-label" for=" plan">Select Plan</label>
-                <select id="plan" name="plan" class="form-control">
-                  <option value="basic">Basic</option>
-                  <option value="enterprise">Enterprise</option>
-                  <option value="company">Company</option>
-                  <option value="team">Team</option>
-                </select>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="area">Area</label>
+                <input type="text" name="area" id="area" class="form-control" placeholder=Area" />
               </div>
-              <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
-              <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="street">Street</label>
+                <input type="text" id="street" class="form-control" placeholder="Street" />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="building">Building</label>
+                <input type="text" id="building" class="form-control" placeholder="Building" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="latitude">Latitude</label>
+                <input type="text" id="latitude" class="form-control" placeholder="658921" />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="city1">Longitude</label>
+                <input type="text" id="longitude" class="form-control" placeholder="658921" />
+              </div>
             </div>
           </form>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary btn-prev">
+              <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+              <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button class="btn btn-primary btn-next">
+              <span class="align-middle d-sm-inline-block d-none">Next</span>
+              <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+            </button>
+          </div>
+        </div>
+        <div id="technical-step" class="content">
+          <div class="content-header">
+            <h5 class="mb-0">Technical Details </h5>
+            <small>Enter Technical Details.</small>
+          </div>
+          <form>
+            <div class="row">
+              <div class="form-group col-md-12">
+
+                <div class="custom-control custom-switch custom-switch-success">
+                  <p class="mb-50">IP Auth?</p>
+                  <input type="checkbox" class="custom-control-input" id="ipswitch"   />
+                  <label class="custom-control-label" for="ipswitch">
+                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+            <div class="row" id="ipdiv" style="display: none">
+            <div class="form-group col-md-6">
+              <label class="form-label" for="ipaddress">IP Address</label>
+              <input type="text" name="ipaddress" id="ipaddress" class="form-control" placeholder="Ip Address" />
+            </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="landmark">Mac Address</label>
+                <input type="text" name="mac" id="mac" class="form-control" placeholder="Mac Address" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-6">
+                <label class="d-block">Notification Type</label>
+                <div class="custom-control custom-radio my-50">
+                  <input type="radio" id="validationsms" name="notification" class="custom-control-input" value="sms" aria-describedby="validationsms-error" aria-invalid="false">
+                  <label class="custom-control-label" for="validationsms">SMS</label>
+                </div>
+                <div class="custom-control custom-radio my-50">
+                  <input type="radio" id="validationwhatsapp" name="notification" class="custom-control-input" value="whatsapp" aria-describedby="validationwhatsapp-error" aria-invalid="false">
+                  <label class="custom-control-label" for="validationwhatsapp">Whatsapp</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="validationemail" name="notification" class="custom-control-input" aria-invalid="false">
+                  <label class="custom-control-label" for="validationemail">Email</label>
+                </div><span id="validationemail-error" class="error" style="display: none;"></span>
+              </div>
+            </div>
+
+            <div class="row" >
+              <div class="form-group col-md-6">
+                <label class="form-label" for="ipaddress">Comment</label>
+                <input type="text" name="comment" id="comment" class="form-control" placeholder="Comment" />
+              </div>
+
+            </div>
+
+          </form>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary btn-prev">
+              <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+              <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button class="btn btn-primary btn-next">
+              <span class="align-middle d-sm-inline-block d-none">Next</span>
+              <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+            </button>
+          </div>
+        </div>
+        <div id="social-links" class="content">
+          <div class="content-header">
+            <h5 class="mb-0">Documentation Proof</h5>
+            <small>Insert Documentation that required for Proof account.</small>
+          </div>
+          <form>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">ID Card </h4>
+                  </div>
+                  <div class="card-body">
+                    <input type="hidden" name="_token"  id="_token"content="{{csrf_token()}}">
+                    <div class="form-group" style="display: flex;">
+                      <div class="col-md-8">
+                        <label>Upload ID Card</label>
+                        <div class="m-dropzone dropzone m-dropzone--success" enctype="multipart/form-data" action="/ISP/uploadIdImage/idcard " id="m-dropzone-idcard">
+                          <div class="m-dropzone__msg dz-message needsclick">
+                            <h4 class="m-dropzone__msg-title"  >
+                              <span data-lang="drop_files_here_or_click_to_upload">Click here To Upload</span>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group" style="display: flex;">
+                      <div class="col-md-8">
+                        <label>Upload Adress Details</label>
+                        <div class="m-dropzone dropzone m-dropzone--success" enctype="multipart/form-data" action="/ISP/uploadIdImage/address" id="m-dropzone-address">
+                          <div class="m-dropzone__msg dz-message needsclick">
+                            <h4 class="m-dropzone__msg-title"  >
+                              <span data-lang="drop_files_here_or_click_to_upload">Click here To Upload</span>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary btn-prev">
+              <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+              <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            </button>
+            <button class="btn btn-success btn-submit" id="User_Submit">Submit</button>
+          </div>
         </div>
       </div>
-      <!-- Modal to add new user Ends-->
     </div>
-
-    <!-- list section end -->
   </section>
-  <!-- users list ends -->
+  <!-- /Horizontal Wizard -->
+
+  <!-- Vertical Wizard -->
+
+  <!-- /Vertical Wizard -->
+
+
+
+
+  <!-- /Modern Vertical Wizard -->
 @endsection
+
 @section('vendor-script')
-  {{-- Vendor js files --}}
-  <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.bootstrap4.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap4.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.bootstrap4.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+  <!-- vendor files -->
+  <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
-
-
+  <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>
 @endsection
 @section('page-script')
-  {{-- Page js files --}}
-  <script src="{{ asset( 'Plugins/metronic.js') }}"></script>
-  <script src="{{ asset(mix('vendors/js/pagination/jquery.bootpag.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/pagination/jquery.twbsPagination.min.js')) }}"></script>
-  <script src="{{ asset( 'Plugins/bootstrap-contextmenu/bootstrap-contextmenu.js') }}"></script>
-  <script src="{{ asset( 'Plugins/jquery-multi-select/js/jquery.multi-select.js') }}"></script>
-  <script src="{{ asset( 'Plugins/jquery-multi-select/js/multi.select.js') }}"></script>
+  <!-- Page js files -->
 
+  <script src="{{ asset( 'js/scripts/ISPUSer/add.js') }}"></script>
 
-  <script  src="{{ asset('Plugins/clipboard/clipboard.js')}}"></script>
-  <script src="{{ asset( 'js/scripts/ISPUSer/listuser.js') }}"></script>
-  <script src="{{ asset('js/scripts/ISPUSer/app-user-list.js') }}"></script>
 
 @endsection
-
-
-
-
