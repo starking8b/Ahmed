@@ -2,14 +2,15 @@
 
 namespace Modules\Role\Http\Controllers;
 
-use App\Models\Permission;
 use App\Models\Role;
-use Illuminate\Contracts\Support\Renderable;
+use App\Models\Permission;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Contracts\Support\Renderable;
 
 class RoleController extends Controller
 {
@@ -70,8 +71,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role=Role::findById($id);
-        return view('role::backend.edit',compact('role'));
+        $role = Role::findById($id);
+        $permissions = DB::table('permissions')->select('permissions.id', 'permissions.name')->get();
+        return view('role::backend.edit', compact('role', 'permissions'));
+
     }
 
     /**
@@ -82,7 +85,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Role::findById($id)->update(['name'=>$request->name]);
+        $module_name_singular = Role::findById($id);
+        $input = $request->except(['permissions']);
+        $module_name_singular->fill($input)->save();
+
+        $module_name_singular->syncPermissions($request->input('permissions'));
+
+        Role::findById($id)->update(['name' => $request->name]);
         return redirect()->route('roles.index');
     }
 
