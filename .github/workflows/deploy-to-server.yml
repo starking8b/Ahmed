@@ -1,0 +1,22 @@
+name: deploy-to-server
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy-to-server:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to Test
+      uses: appleboy/ssh-action@master
+      with:
+          host: "45.118.166.12"
+          username: "ankur"
+          password: "Zapbytes@1"
+          port: "22"
+          script: 'cd /var/www/html/ispcrm && chmod +x ./server_deploy.sh && ./server_deploy.sh'
