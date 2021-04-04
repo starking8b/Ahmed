@@ -286,4 +286,6 @@ Route::group(['middleware'=>'auth'], function () {
     // locale Route
     Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
+
 });
+
