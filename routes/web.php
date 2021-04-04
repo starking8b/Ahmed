@@ -26,7 +26,12 @@ Route::group(['middleware'=>'auth'], function () {
     /* Route Dashboards */
     Route::group(['prefix' => 'ISP'], function () {
         Route::get('users', 'ISPUsersController@index')->name('isp-users-list');
+        Route::get('users/newuser', 'ISPUsersController@add')->name('isp-users-new');
+        Route::get('users/user_exists', 'ISPUsersController@user_exists')->name('isp-users-exists');
+        Route::get('users/Delete', 'ISPUsersController@destroy')->name('isp-users-destroy');
+        Route::get('users/edit/{username}', 'ISPUsersController@edit_view')->name('isp-users-edit_view');
         Route::get('users/add', 'ISPUsersController@add')->name('isp-users-add');
+        Route::get('users/edit', 'ISPUsersController@edit')->name('isp-users-edit');
         Route::get('users/adduser', 'ISPUsersController@addview')->name('isp-users-add-view');
         Route::get('usereSearch', 'ISPUsersController@reSearch')->name('isp-users-research');
         Route::get('getPageCountusers', 'ISPUsersController@getPageCount')->name('isp-users-pagecount');
@@ -57,6 +62,47 @@ Route::group(['middleware'=>'auth'], function () {
         Route::get('get_all_states', 'LocationsController@get_all_states')->name('get_all_states');
         Route::get('get_all_cities', 'LocationsController@get_all_cities')->name('get_all_cities');
         Route::get('get_all_thana', 'LocationsController@get_all_thana')->name('get_all_thana');
+        Route::post('get_city_by_state', 'LocationsController@get_city_by_state')->name('get_city_by_state');
+        Route::post('get_thana_by_city', 'LocationsController@get_thana_by_city')->name('get_thana_by_city');
+        Route::post('get_area_by_thana', 'LocationsController@get_area_by_thana')->name('get_area_by_thana');
+
+    });
+    Route::group(['prefix' => 'Plans'], function () {
+        Route::get('list', 'PlansController@index')->name('plans-list');
+        Route::get('add', 'PlansController@add')->name('plans-add');
+        Route::get('edit', 'PlansController@edit')->name('plans-edit');
+        Route::post('delete', 'PlansController@delete')->name('plans-delete');
+        Route::get('plan_list_get', 'PlansController@plan_list_get')->name('plan_list_get');
+
+
+
+    });
+    Route::group(['prefix' => 'Routers'], function () {
+        Route::get('list', 'NASController@index')->name('Routers-list');
+        Route::get('edit_device/{id}', 'NASController@edit_device')->name('Routers-edit_device');
+        Route::get('NAS_list_get', 'NASController@NAS_list_get')->name('NAS_list_get');
+        Route::get('add', 'NASController@add')->name('add');
+        Route::get('router_exists', 'NASController@router_exists')->name('router_exists');
+        Route::get('map', 'NASController@map')->name('router-map');
+        Route::post('Save_Mikrotik', 'NASController@Save_Mikrotik')->name('router-Save_Mikrotik');
+        Route::post('get_Mikrotik', 'NASController@get_Mikrotik')->name('router-get_Mikrotik');
+        Route::post('test_API', 'NASController@test_API')->name('router-test_API');
+        Route::post('Save_device', 'NASController@Save_device')->name('router-Save_device');
+        Route::post('save_map', 'NASController@save_map')->name('router-save_map');
+        Route::post('get_Map', 'NASController@get_Map')->name('router-get_Map');
+
+
+    });
+
+    Route::group(['prefix' => 'NAS'], function () {
+        Route::get('NAS', 'NASController@index')->name('nas_index');
+
+
+
+
+
+
+
 
     });
     /* Route Apps */
