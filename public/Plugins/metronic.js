@@ -630,7 +630,7 @@ var Metronic = function () {
             handleTooltips(); // handle bootstrap tooltips
             handlePopovers(); // handles bootstrap popovers
             handleAccordions(); //handles accordions 
-            handleModals(); // handle modals
+           // handleModals(); // handle modals
             //handleBootstrapConfirmation(); // handle bootstrap confirmations
             handleTextareaAutosize(); // handle autosize textareas
 

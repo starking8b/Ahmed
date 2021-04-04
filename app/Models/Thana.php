@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class Thana extends Model
 
     public function cities()
     {
-        return $this->hasOne('App\Model\City', 'id', 'city_id');
+        return $this->hasOne('App\Models\City', 'id', 'city_id');
     }
 }

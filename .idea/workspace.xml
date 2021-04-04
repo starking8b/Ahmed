@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f24b26b9-e8b9-4328-83dc-e80bdc48c75f" name="Default Changelist" comment="" />
+    <list default="true" id="f24b26b9-e8b9-4328-83dc-e80bdc48c75f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Area.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/City.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/State.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Thana.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Actions/location_actions.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/ISPUsers/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Locations/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_2_27_21__1_17_PM.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_2_27_21__1_17_PM.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ispcrm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ispcrm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ISPUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ISPUsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/RadReply.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RadReply.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/RadUserGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RadUserGroup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Radacct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Radacct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Radcheck.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Radcheck.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Redgroupreply.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Redgroupreply.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Subscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/UserMAC.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/UserMAC.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/debugbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/debugbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Plugins/jquery-multi-select/css/multi.select.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/Plugins/jquery-multi-select/css/multi.select.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Plugins/jquery-multi-select/js/multi.select.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/Plugins/jquery-multi-select/js/multi.select.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Plugins/metronic.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/Plugins/metronic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ISPUsers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ISPUsers/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/content/pages/buy-now.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/content/pages/buy-now.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/debugbar/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/debugbar/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,10 +194,11 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
-      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
-      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ojgzZSPiK4KvvO6xiwmUkQVe4d" />
@@ -167,18 +210,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Models" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Models" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/resources/views/ISPUsers" />
+      <recent name="$PROJECT_DIR$/public/js/scripts/ISPUSer" />
       <recent name="$PROJECT_DIR$/app/Model" />
-      <recent name="$PROJECT_DIR$/public/Plugins/jquery-multi-select/css" />
-      <recent name="$PROJECT_DIR$/public/Plugins/jquery-multi-select/js" />
-      <recent name="$PROJECT_DIR$/public/Plugins" />
-      <recent name="$PROJECT_DIR$/public/css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Models" />
       <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
@@ -201,7 +245,13 @@
       <workItem from="1613974917786" duration="3692000" />
       <workItem from="1614075254406" duration="13619000" />
       <workItem from="1614327713903" duration="10605000" />
-      <workItem from="1614421036533" duration="172000" />
+      <workItem from="1614421036533" duration="19696000" />
+      <workItem from="1614496971876" duration="12948000" />
+      <workItem from="1614755379714" duration="596000" />
+      <workItem from="1614768480878" duration="599000" />
+      <workItem from="1614868671787" duration="597000" />
+      <workItem from="1614974752213" duration="28498000" />
+      <workItem from="1615048173503" duration="5826000" />
     </task>
     <servers />
   </component>

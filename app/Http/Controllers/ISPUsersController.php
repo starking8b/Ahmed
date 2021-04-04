@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\RadUserGroup;
+use App\Models\RadUserGroup;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Model\Radcheck;
-use APP\Model\Radacct;
-use APP\Model\RadReply;
-use App\Model\Subscriber;
-use App\Model\Profile;
+use App\Models\Radcheck;
+use APP\Models\Radacct;
+use APP\Models\RadReply;
+use App\Models\Subscriber;
+use App\Models\Profile;
 
 use Illuminate\Support\Str;
 use Session;
@@ -19,8 +20,9 @@ class ISPUsersController extends Controller
   public function index()
   {
     $pageConfigs = ['pageHeader' => true];
+    $users=User::get();
 
-    return view('ISPUsers.index', ['pageConfigs' => $pageConfigs]);
+    return view('ISPUsers.index', ['pageConfigs' => $pageConfigs], compact('users'));
   }
 
     public function reSearch(Request $request) {
@@ -49,8 +51,14 @@ class ISPUsersController extends Controller
 
             $value=str_replace(" ","",$value);
             if(!Str::contains($value,'undefined') && !empty($value)&&!Str::contains($key,'undefined') ){
+                       if($key=='owner') {
 
-                    $query->where("$key",'=',"$value");
+                           $query->whereHas('owners', function ($q) use($value){
+                               return $q->where('name', '=', "$value");
+                           });
+                       }
+                       else{$query->where("$key",'=',"$value");}
+
 
 
             }
@@ -58,7 +66,8 @@ class ISPUsersController extends Controller
 
         }
 
-        $count =  $query-> offset($offset)->limit( $paging)->get()->count();
+          $count =  $query-> offset($offset)->limit( $paging)->get()->count();
+
         if($count>0)
         {
             $datas =  $query-> limit( $paging)->orderBy('id', 'DESC')->get()->toArray();
@@ -110,22 +119,76 @@ class ISPUsersController extends Controller
         return json_encode(["PagingCount"=>$pagenumber]);
     }
 
+    public  function addview(){
+        $pageConfigs = ['pageHeader' => true];
+        $users=User::get();
+
+        return view('ISPUsers.add', ['pageConfigs' => $pageConfigs], compact('users'));
+
+    }
+
 
     public function add (Request $request){
       $username=$request->username;
-      $fullname=$request->fullname;
+      $fullname=$request->full_name;
       $password=$request->password;
       $address=$request->address;
       $phone=$request->phone;
       $email=$request->email;
       $owner=$request->owner;
       $plan=$request->plan;
+      $country=$request->country;
+      $city=$request->city;
+      $address=$request->address;
+      $pincode=$request->pincode;
+      $addressswitch=$request->addressswitch;
+      $countrybill=$request->countrybill;
+      $addressbill=$request->addressbill;
+      $pincodebill=$request->pincodebill;
+      $citybill=$request->citybill;
+      $owner=$request->owner;
+      $area=$request->area;
+      $street=$request->street;
+      $building=$request->building;
+      $latitude=$request->latitude;
+      $longitude=$request->longitude;
+      $ipswitch=$request->ipswitch;
+      $ipaddress=$request->ipaddress;
+      $mac=$request->mac;
+      $notification=$request->notification;
+      $comment=$request->comment;
+      if(isset($ipaddress))
 
       $data=new Subscriber();
         $data->username = $username;
         $data->enableuser = 1;
         $data->password = $password;
         $data->user_type = 1;
+
+        if(isset($ipaddress))
+            $data->ip=$ipaddress;
+        if(isset($mac))
+            $data->mac=$mac;
+        if(isset($addressbill))
+            $data->addressbill=$addressbill;
+        else
+            $data->addressbill=$address;
+        if(isset($countrybill))
+            $data->countrybill=$countrybill;
+        else
+            $data->countrybill=$country;
+        if(isset($citybill))
+            $data->citybill=$citybill;
+        else
+            $data->citybill=$city;
+
+        if(isset($pincodebill))
+            $data->pincodebill=$pincodebill;
+        else
+            $data->pincodebill=$pincode;
+
+
+
         $data->owner = $owner;
         $data->fullname = $fullname;
         $data->address = $address;
@@ -134,10 +197,16 @@ class ISPUsersController extends Controller
         $data->srvid = $plan;
         $data->expiration = date('Y-m-d H:i:s');
         $data->extended_expiration = date('Y-m-d H:i:s');
-        $data->created_by = 1;//Auth::user()->id;
+        $data->created_by =  Auth::user()->id;
         $data->created_at = date('Y-m-d H:i:s');
         $data->createdon = date('Y-m-d');
         $data->status = 1;
+        $data->longitude = $longitude;
+        $data->latitude=$latitude;
+        $data->building=$building;
+        $data->street=$street;
+        $data->area=$area;
+
         $result=$data->save();
         if($result){
             $radPassword = new RadCheck;
@@ -158,6 +227,19 @@ class ISPUsersController extends Controller
         else{
             echo json_encode(['success'=>'false','msg'=>'Error! Please Try again Later']);
         }
+  }
+  public function uploadIdImage(Request $request){
+          $type=$request->type;
+          $file = $request->file('file');
+          $filename = $type.time().'.'.$file->extension();
+          $location = storage_path().'/upload/ISPUsers/'  ;
+          $file->move($location, $filename);
+          $path= '/upload/ISPUsers/'.$filename;
+          Session::put($type.'_Image', $path);
+
+          return response()->json(['success'=>$filename]);
+
+
   }
 
 }
