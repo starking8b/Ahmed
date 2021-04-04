@@ -22,37 +22,6 @@
             }
           ]
         },
-        {
-          "navheader": "Modules",
-          "slug": ""
-        },
-      
-        
-            {
-              "url": "crm/users",
-              "name": "Users",
-              "icon": "circle",
-              "slug": "users-list"
-            },
-            {
-              "url": "crm/roles",
-              "name": "Roles",
-              "icon": "circle",
-              "slug": "roller"
-            },
-            {
-              "url": "crm/permissions",
-              "name": "Permissions",
-              "icon": "circle",
-              "slug": "permissions"
-            },
-        {
-        "url": "crm/isp",
-        "name": "ISP List",
-        "icon": "circle",
-        "slug": "app-user-list"
-         
-        },
     {
       "navheader": "Apps & Pages",
       "slug": ""
