@@ -1,2 +1,2 @@
 [dev]
-10.1.120.8 ansible_user=masteradmin
+10.1.120.8 ansible_user=root
